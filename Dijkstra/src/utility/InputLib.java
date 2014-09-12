@@ -2,11 +2,13 @@ package utility;
 // Figures A.5-A.6
 
 import java.io.*;
-import java.util.*;
 
 class InputLib {
     static class InputError extends Error {
-        public InputError(String s) {
+
+		private static final long serialVersionUID = 4025389926320487144L;
+
+		public InputError(String s) {
             super(s);
         }
     }

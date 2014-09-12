@@ -7,17 +7,11 @@ package pathfinder;
  * @author Yong Yu Wang
  */
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
-import java.util.TreeMap;
 
 import utility.Edge;
 import utility.GraphInput;
@@ -37,15 +31,13 @@ public class Dijkstra {
 	public static void main(String [] args) {
 	    // create SimpleGraph ADT
         SimpleGraph graph = new SimpleGraph();
-        // create GraphInput object
-        GraphInput input = new GraphInput();
         
         /**
          * Loads graph data from text file, creates graph structure and stores data into SimpleGraph and Hashtable.
          * SimpleGraph contains linked lists of graph vertex and edges.
          * Hashtable associates vertex objects with their names.
          */
-        Hashtable table = input.LoadSimpleGraph(graph);
+        Hashtable<String, Vertex> table = GraphInput.LoadSimpleGraph(graph);
 		String response = "y";
 		// loops the program as long as user wants to
 		while(response.toLowerCase().equals("y")) {
@@ -72,7 +64,7 @@ public class Dijkstra {
 	 * @param graph	The SimpleGrapth ADT that contains the graph data
 	 * @param table	The hashtable mapping names to vertices
 	 */
-	public static void start(SimpleGraph graph, Hashtable table) {
+	public static void start(SimpleGraph graph, Hashtable<String, Vertex> table) {
 		
 		// asks user to input starting vertex
 		System.out.print("Enter the name of the origin: ");
@@ -163,12 +155,12 @@ public class Dijkstra {
 		// get the weight of the origin vertex
 		double initialWeight = ((DijkstraNode) initial.getData()).getWeight();
 		
-		Iterator i;
+		Iterator<Edge> i;
 		Edge e;
 		// traverses all edges incident to initial vertex and finds all adjacent vertices
 		for (i = graph.incidentEdges(initial); i.hasNext();) {
 			// gets next incident edge
-			e = (Edge) i.next();
+			e = i.next();
 			// calculates new weight by adding the weight of this edge to weight of origin vertex
 			double newWeight = initialWeight + (Double) e.getData();
 			// get a vertex adjacent to initial using edge

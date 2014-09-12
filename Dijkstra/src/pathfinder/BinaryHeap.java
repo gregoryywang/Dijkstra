@@ -3,15 +3,18 @@ package pathfinder;
  * A binary minheap of comparable objects.
  * Modified by Yong Yu Wang to support updating the weight of DijkstraNodes
  * @author Donald Chinn
- * @author yongyuwang
+ * @author Yong Yu Wang
  * @version September 19, 2003
  */
+
+@SuppressWarnings({"rawtypes", "unchecked"})
+
 public class BinaryHeap {
     
     /* the heap is organized using the implicit array implementation.
      * Array index 0 is not used
      */
-    private Comparable[] elements;
+	private Comparable[] elements;
     private int size;       // index of last element in the heap
     
     // Constructor
@@ -109,7 +112,7 @@ public class BinaryHeap {
      * Given an index in the heap array, percolate that key up the heap.
      * @param index     an index into the heap array
      */
-    private void percolateUp(int index) {
+	private void percolateUp(int index) {
         Comparable temp = elements[index];  // keep track of the item to be moved
         while (index > 1) {
             if (temp.compareTo(elements[index/2]) < 0) {

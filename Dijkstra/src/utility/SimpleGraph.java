@@ -4,6 +4,7 @@ package utility;
  * Written by Ed Hong UWT Feb. 17, 2003.
  * Modified by Donald Chinn May 14, 2003.
  * Modified by Donald Chinn December 11, 2003.
+ * Modified by Yong Yu Wang September 12, 2014
  */
 
 
@@ -16,22 +17,23 @@ import java.util.*;
  * @author edhong
  * @version 0.0
  */
+
 public class SimpleGraph {
 
-    LinkedList vertexList;
-    LinkedList edgeList;
+    LinkedList<Vertex> vertexList;
+    LinkedList<Edge> edgeList;
 
     // Constructor
     public SimpleGraph() {
-        this.vertexList = new LinkedList();
-        this.edgeList = new LinkedList();
+        this.vertexList = new LinkedList<Vertex>();
+        this.edgeList = new LinkedList<Edge>();
     }
     
     /**
      * Return the vertex list of this graph.
      * @returns  vertex list of this graph
      */
-    public Iterator vertices() {
+    public Iterator<Vertex> vertices() {
         return vertexList.iterator();
     }
 
@@ -39,7 +41,7 @@ public class SimpleGraph {
      * Return the edge list of this graph.
      * @returns  edge list of this graph
      */
-    public Iterator edges() {
+    public Iterator<Edge> edges() {
         return edgeList.iterator();
     }
 
@@ -48,7 +50,7 @@ public class SimpleGraph {
      * @param v  a vertex
      * @returns  an iterator to the edge list of that vertex
      */
-    public Iterator incidentEdges(Vertex v) {
+    public Iterator<Edge> incidentEdges(Vertex v) {
         return v.incidentEdgeList.iterator();
     }
 
@@ -58,7 +60,7 @@ public class SimpleGraph {
      */
     public Vertex aVertex() {
         if (vertexList.size() > 0)
-            return (Vertex) vertexList.getFirst();
+            return vertexList.getFirst();
         else
             return null;
     }
@@ -84,7 +86,7 @@ public class SimpleGraph {
      * @param name  name to be associated with the new edge
      * @returns  the new edge
      */
-    public Edge insertEdge(Vertex v, Vertex w, Object data, Object name) {
+	public Edge insertEdge(Vertex v, Vertex w, Object data, Object name) {
         Edge e;
         e = new Edge(v, w, data, name);
         edgeList.addLast(e);
@@ -156,22 +158,22 @@ public class SimpleGraph {
         e = G.insertEdge(b, c, null, "Y");
         y = e;
 
-        Iterator i;
+        Iterator<Vertex> i;
 
         System.out.println("Iterating through vertices...");
         for (i= G.vertices(); i.hasNext(); ) {
-            v = (Vertex) i.next();
+            v = i.next();
             System.out.println("found vertex " + v.getName());
         }
 
         System.out.println("Iterating through adjacency lists...");
         for (i= G.vertices(); i.hasNext(); ) {
-            v = (Vertex) i.next();
+            v = i.next();
             System.out.println("Vertex "+v.getName());
-            Iterator j;
+            Iterator<Edge> j;
             
             for (j = G.incidentEdges(v); j.hasNext();) {
-                e = (Edge) j.next();
+                e = j.next();
                 System.out.println("  found edge " + e.getName());
             }
         }

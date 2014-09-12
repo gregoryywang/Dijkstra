@@ -6,4 +6,5 @@ package pathfinder;
  * @version September 19, 2003
  */
 public class EmptyHeapException extends Exception {
+	private static final long serialVersionUID = 1L;
 }

@@ -2,13 +2,13 @@
  * Written by Ed Hong UWT Feb. 19, 2003.
  * Modified by Donald Chinn May 14, 2003.
  * Modified by Donald Chinn December 11, 2003.
+ * Modified by Yong Yu Wang September 12, 2014.
  */
 
 package utility;
 
 import java.io.*;
 import java.util.*;
-import java.text.*;
 
 /**
  * A class that can read a graph (in a specific format) from a file.
@@ -26,7 +26,7 @@ public class GraphInput {
      * @param newgraph  a simple graph
      * @returns a hash table of (String, Vertex) pairs
      */
-    public static Hashtable LoadSimpleGraph(SimpleGraph newgraph) {
+    public static Hashtable<String, Vertex> LoadSimpleGraph(SimpleGraph newgraph) {
         System.out.print("Please enter the full path and file name for the input data: ");
         String userinput;
         userinput = KeyboardReader.readString();
@@ -46,13 +46,13 @@ public class GraphInput {
      * @param pathandfilename  the name of the file, including full path.
      * @returns  a hash table of (String, Vertex) pairs
      */
-    public static Hashtable LoadSimpleGraph(SimpleGraph newgraph, String pathandfilename){
+    public static Hashtable<String, Vertex> LoadSimpleGraph(SimpleGraph newgraph, String pathandfilename){
         BufferedReader  inbuf = InputLib.fopen(pathandfilename);
         System.out.println("Opened " + pathandfilename + " for input.");
         String  line = InputLib.getLine(inbuf); // get first line
         StringTokenizer sTok;
         int n, linenum = 0;
-        Hashtable table = new Hashtable();
+        Hashtable<String, Vertex> table = new Hashtable<String, Vertex>();
         SimpleGraph sg = newgraph;
 
         while (line != null) {

@@ -4,6 +4,7 @@ package utility;
  * Written by Ed Hong UWT Feb. 19, 2003.
  * Modified by Donald Chinn May 14, 2003.
  * Modified by Donald Chinn December 11, 2003.
+ * Modified by Yong Yu Wang September 12, 2014
  */
 
 import java.util.*;
@@ -22,7 +23,7 @@ import java.util.*;
  */
 public class Vertex {
     /** the edge list for this vertex */
-    LinkedList incidentEdgeList;
+    LinkedList<Edge> incidentEdgeList;
 
     private Object data;              // an object associated with this vertex
     private Object name;              // a name associated with this vertex
@@ -36,7 +37,7 @@ public class Vertex {
     public Vertex(Object data, Object name) {
         this.data = data;
         this.name = name;
-        this.incidentEdgeList = new LinkedList();
+        this.incidentEdgeList = new LinkedList<Edge>();
     }
     
     /**
